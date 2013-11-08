@@ -1,0 +1,11 @@
+@charset "UTF-8";
+
+#demo2 {
+  width: 631px;
+  height: 400px;
+  border: 1px solid black;
+}
+
+#demo2.active {
+    border: 2px solid red;
+}

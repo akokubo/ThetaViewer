@@ -8,11 +8,15 @@
 
   <link rel="stylesheet" href="stylesheets/stylesheet.css" media="screen"/>
   <link rel="stylesheet" href="stylesheets/pygment_trac.css"/>
+  <link rel="stylesheet" href="stylesheets/demo2.css"/>
   <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
   <script type="text/javascript" src="javascripts/script.js"></script>
+  <script type="text/javascript" src="javascripts/three.min.js"></script>
+  <script type="text/javascript" src="javascripts/theta-viewer.min.js"></script>
+  <script type="text/javascript" src="javascripts/demo2.js"></script>
 
   <title>Theta Viewer</title>
-  <meta name="description" content="RICOH THETA like equirectangular projection panorama HTML 5 viewer">
+  <meta name="description" content="RICOH THETA like equirectangular projection panorama HTML5 viewer">
 
   <meta name="viewport" content="width=device-width,initial-scale=1">
 
@@ -25,48 +29,50 @@
       <h1 class="title">Theta Viewer</h1>
     </header>
     <div id="container">
-      <p class="tagline">RICOH THETA like equirectangular projection panorama HTML 5 viewer</p>
+      <p class="tagline">RICOH THETA like equirectangular projection panorama HTML5 viewer</p>
       <div id="main" role="main">
         <div class="download-bar">
         <div class="inner">
           <a href="https://github.com/akokubo/ThetaViewer/tarball/master" class="download-button tar"><span>Download</span></a>
           <a href="https://github.com/akokubo/ThetaViewer/zipball/master" class="download-button zip"><span>Download</span></a>
-          <a href="https://github.com/akokubo/ThetaViewer" class="code">View Theta Viewer on GitHub</a>
+          <a href="https://github.com/akokubo/ThetaViewer" class="code">GitHubでTheta Viewerを閲覧</a>
         </div>
         <span class="blc"></span><span class="trc"></span>
         </div>
         <article class="markdown-body">
-          <h3>
-<a name="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages"><span class="octicon octicon-link"></span></a>Welcome to GitHub Pages.</h3>
+          
+<h3><a name="welcome-to-theta-viewer-page" class="anchor" href="#welcome-to-theta-viewer-page"><span class="octicon octicon-link"></span></a>Theta Viewerのページへようこそ</h3>
 
-<p>This automatic page generator is the easiest way to create beautiful pages for all of your projects. Author your page content here using GitHub Flavored Markdown, select a template crafted by a designer, and publish. After your page is generated, you can check out the new branch:</p>
+<p>Theta Viewerは、RICOH THETAのような正距円筒図法(equirectangular projection)のパノラマ画像のHTML5ビューアーです。</p>
+<img src="images/equirectangular-projection-panorama.jpg">
+<p>Theta Viewerは、<a href="http://jquery.com/">jQuery</a>のプラグインになっていて、必要なライブラリを読み込んだ上で、以下のようなコードを埋め込むことで、Webサイトなどに正距円筒図法のパノラマ画像を表示することができます。</p>
 
-<pre><code>$ cd your_repo_root/repo_name
-$ git fetch origin
-$ git checkout gh-pages
+<pre><code>&lt;div id=&quot;embed-area&quot;&gt;&lt;/div&gt;
+&lt;script&gt;
+(function ($) {
+    'use strict';
+    $(&quot;#embed-area&quot;).createThetaViewer(&quot;image/panorama-image.jpg&quot;);
+}(jQuery));
+&lt;/script&gt;
 </code></pre>
 
-<p>If you're using the GitHub for Mac, simply sync your repository and you'll see the new branch.</p>
+<p>Theta Viewerは、JavaScriptのHTML5 3Dグラフィックスライブラリ<a href="http://threejs.org/">three.js</a>を利用して表示を行なっています。現時点ではWebGLの動作するPCのブラウザで閲覧することができます。また、今後、iOSやAndroidでも動作するようにしたいと考えています。</p>
 
-<h3>
-<a name="designer-templates" class="anchor" href="#designer-templates"><span class="octicon octicon-link"></span></a>Designer Templates</h3>
+<h3><a name="theta-viewer-demo1" class="anchor" href="#theta-viewer-demo1"><span class="octicon octicon-link"></span></a>Theta Viewerのデモ1</h3>
 
-<p>We've crafted some handsome templates for you to use. Go ahead and continue to layouts to browse through them. You can easily go back to edit your page before publishing. After publishing your page, you can revisit the page generator and switch to another theme. Your Page content will be preserved if it remained markdown format.</p>
+<p>サイトにアップしたパノラマ画像を表示するデモ</p>
+<div id="demo1" style="width: 100%; height: 400px; margin-bottom: 40px;"></div>
+<script>
+(function ($) {
+    'use strict';
+    $("#demo1").createThetaViewer("images/demo1.jpg");
+}(jQuery));
+</script>
 
-<h3>
-<a name="rather-drive-stick" class="anchor" href="#rather-drive-stick"><span class="octicon octicon-link"></span></a>Rather Drive Stick?</h3>
+<h3><a name="theta-viewer-demo2" class="anchor" href="#theta-viewer-demo2"><span class="octicon octicon-link"></span></a>Theta Viewerのデモ2</h3>
 
-<p>If you prefer to not use the automatic generator, push a branch named <code>gh-pages</code> to your repository to create a page manually. In addition to supporting regular HTML content, GitHub Pages support Jekyll, a simple, blog aware static site generator written by our own Tom Preston-Werner. Jekyll makes it easy to create site-wide headers and footers without having to copy them across every page. It also offers intelligent blog support and other advanced templating features.</p>
-
-<h3>
-<a name="authors-and-contributors" class="anchor" href="#authors-and-contributors"><span class="octicon octicon-link"></span></a>Authors and Contributors</h3>
-
-<p>You can <a href="https://github.com/blog/821" class="user-mention">@mention</a> a GitHub username to generate a link to their profile. The resulting <code>&lt;a&gt;</code> element will link to the contributor's GitHub Profile. For example: In 2007, Chris Wanstrath (<a href="https://github.com/defunkt" class="user-mention">@defunkt</a>), PJ Hyett (<a href="https://github.com/pjhyett" class="user-mention">@pjhyett</a>), and Tom Preston-Werner (<a href="https://github.com/mojombo" class="user-mention">@mojombo</a>) founded GitHub.</p>
-
-<h3>
-<a name="support-or-contact" class="anchor" href="#support-or-contact"><span class="octicon octicon-link"></span></a>Support or Contact</h3>
-
-<p>Having trouble with Pages? Check out the documentation at <a href="http://help.github.com/pages">http://help.github.com/pages</a> or contact <a href="mailto:support@github.com">support@github.com</a> and we’ll help you sort it out.</p>
+<p>パノラマ画像を領域にドラッグ&amp;ドロップして表示するデモ</p>
+<div id="demo2" style="; margin-bottom: 40px;">パノラマ画像をここへドロップ</div>
         </article>
       </div>
     </div>

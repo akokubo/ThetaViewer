@@ -29,6 +29,7 @@ $(document).ready(function(){
   else if($(".markdown-body h2").length > 1) $(".markdown-body h2").each(collectHeaders)
   else if($(".markdown-body h3").length > 1) $(".markdown-body h3").each(collectHeaders)
 
+/*
   $(window).scroll(function(){
     if(headings.length==0) return true;
     var scrolltop = $(window).scrollTop() || 0;
@@ -43,7 +44,7 @@ $(document).ready(function(){
       }
     }
   });
-
+*/
   $(".current-section a").click(function(){
     $(window).scrollTop(0);
     return false;
