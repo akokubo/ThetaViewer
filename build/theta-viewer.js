@@ -130,6 +130,9 @@
         // マウス移動時の処理
         function onMouseMove(event) {
             var phi, theta;
+
+            event.preventDefault();
+
             if (isRotating === true) {
                 // 緯度経度を求める
                 lat = (event.clientY - onMouseDownY) * 0.1
@@ -160,6 +163,8 @@
             var fov    = THETA_VIEWER.camera.fov,
                 fovMin = 20,
                 fovMax = 150;
+
+            event.preventDefault();
 
             // WebKit
             if (event.wheelDeltaY) {
