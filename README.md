@@ -9,7 +9,7 @@ Setup
 -------------
 
 1. jQueryとthree.jsをHTMLに先に読み込みます。以下の例は、jQueryとthree.jsをダウンロードし、jsフォルダに置いた場合のものになっています。
-2. Theta ViewerをHTMLに読み込みます。以下の例は、配布しているファイルの中のbuildフォルダ中のtheta-view.min.jsをjsフォルダに置いた場合のものになっています。
+2. Theta ViewerをHTMLに読み込みます。以下の例は、配布しているファイルの中のbuildフォルダ中のtheta-viewer.min.jsをjsフォルダに置いた場合のものになっています。
 3. HTMLのbody要素の中にTheta Viewerでパノラマ画像を表示する要素(例では#theta-viewer)を用意します。
 4. パノラマ画像を表示するコードを記述します。具体的には「jQuery(パノラマ画像を表示したいセレクタ).createThetaViewer(画像ファイル);」で表示できます。以下の例では、#theta-viewerにimgフォルダの中のtheta.jpgを表示しています。
 
@@ -21,8 +21,8 @@ Setup
   <script src="js/jquery-1.10.2.min.js"></script>
   <script src="js/jquery-migrate-1.2.1.min.js"></script>
   <script src="js/three.min.js"></script>
-  <link rel="stylesheet" href="css/styles.css">
   <script src="js/theta-viewer.min.js"></script>
+  <link rel="stylesheet" href="css/styles.css">
   <title>Sample of THETA Viewer</title>
 </head>
 <body>
