@@ -49,6 +49,7 @@ Platform
 - Firefox
 - Chrome
 - Safari
+- iOS、Android(対応予定)
 
 License
 -------
