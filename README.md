@@ -40,7 +40,8 @@ Documentation
 
 Sample
 ------
-[Sample](http://www.aomori-u.ac.jp/staff/kokubo/ThetaViewer/)
+* [サンプル1(画像を指定して読み込み)](http://www.aomori-u.ac.jp/staff/kokubo/ThetaViewer/)
+* [サンプル2(画像をドラッグ&ドロップ)](http://www.aomori-u.ac.jp/staff/kokubo/ThetaViewer/index_drop.html)
 
 Platform
 --------
