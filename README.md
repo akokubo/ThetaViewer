@@ -45,19 +45,24 @@ Manipulation
 - マウスのドラッグで注視点を移動
 - マウスのホイールでズームイン/ズームアウト
 
-Sample
-------
+Samples
+-------
 
 * [サンプル1(画像を指定して読み込み)](http://www.aomori-u.ac.jp/staff/kokubo/ThetaViewer/)
 * [サンプル2(画像をドラッグ&ドロップ)](http://www.aomori-u.ac.jp/staff/kokubo/ThetaViewer/index_drop.html)
 
-Platform
---------
+Platforms
+---------
 
 - Firefox
 - Chrome
 - Safari
-- iOS、Android(対応予定)
+- 対応したい: iOS、Android
+
+Issues
+------
+
+- 同一ページ内に複数のTheta Viewerコンテンツの表示ができない
 
 License
 -------
