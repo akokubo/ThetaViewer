@@ -66,8 +66,8 @@
                 thetaLength;                   // θ方向の覆っている角度
 
             // 画像の縦横比からθ方向の覆っている範囲を計算
-            thetaLength = 2 * Math.PI
-                * texture.image.height / texture.image.width;
+            thetaLength = 2 * Math.PI *
+                texture.image.height / texture.image.width;
             if (thetaLength > Math.PI) {
                 thetaLength = Math.PI;
             }
@@ -136,11 +136,11 @@
 
             if (isRotating === true) {
                 // 緯度経度を求める
-                lat = (event.clientY - onMouseDownY) * 0.1
-                    + onMouseDownLat;
+                lat = (event.clientY - onMouseDownY) * 0.1 +
+                    onMouseDownLat;
                 lat = Math.max(-85, Math.min(85, lat));
-                lng = (onMouseDownX - event.clientX) * 0.1
-                    + onMouseDownLng;
+                lng = (onMouseDownX - event.clientX) * 0.1 +
+                    onMouseDownLng;
 
                 // 緯度経度からθφを導出
                 phi   = (90 - lat) * Math.PI / 180;
