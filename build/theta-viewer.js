@@ -87,10 +87,11 @@
         material = new THREE.MeshBasicMaterial({
             overdraw: true,
             map:      texture,
-            side:     THREE.BackSide // 内側にのみテクスチャーを貼る
+            side:     THREE.FrontSide // 内側にのみテクスチャーを貼る
         });
 
         geometry = createGeometry(texture);
+        geometry.applyMatrix(new THREE.Matrix4().makeScale(1, 1, -1));
 
         mesh = new THREE.Mesh(geometry, material);
 
