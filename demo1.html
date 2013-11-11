@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="stylesheets/styles.css">
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+  <script src="javascripts/three.min.js"></script>
+  <script src="javascripts/theta-viewer.min.js"></script>
+  <title>Demo 1</title>
+</head>
+<body>
+  <div id="theta-viewer"></div>
+  <script>
+/*global jQuery */
+(function ($) {
+    'use strict';
+    // #theta-viewerにパノラマ画像img/R0010035.JPGを表示
+    $("#theta-viewer").createThetaViewer('images/R0010035.JPG');
+}(jQuery));
+  </script>
+</body>
+</html>
