@@ -48,8 +48,8 @@ Manipulation
 Samples
 -------
 
-* [サンプル1(画像を指定して読み込み)](http://www.aomori-u.ac.jp/staff/kokubo/ThetaViewer/)
-* [サンプル2(画像をドラッグ&ドロップ)](http://www.aomori-u.ac.jp/staff/kokubo/ThetaViewer/index_drop.html)
+* [サンプル1(画像を指定して読み込み)](http://akokubo.github.io/ThetaViewer/demo1.html)
+* [サンプル2(画像をドラッグ&ドロップ)](http://akokubo.github.io/ThetaViewer/demo2.html)
 
 Platforms
 ---------
@@ -62,11 +62,10 @@ Platforms
 Issues
 ------
 
-- 同一ページ内に複数のTheta Viewerコンテンツの表示ができない
-
 ChangeLogs
 ----------
 
+- v.0.2.0 2013/11/12 同一ページ内に複数のTheta Viewコンテンツが存在できるように修正
 - v.0.1.2 2013/11/11 画像が裏表逆に表示されるのを修正
 - v.0.1.1 2013/11/10 マウス操作のバグを修正
 - v.0.1 2013/11/08 リリース
