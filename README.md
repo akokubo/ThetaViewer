@@ -59,8 +59,10 @@ Platforms
 - Safari
 - 対応したい: iOS、Android
 
-Issues
-------
+Problems
+--------
+
+- Firefoxの場合、Theta Viewerコンテンツが存在する領域を、スクロールによりウィンドウ内外に移動するとハングする
 
 ChangeLogs
 ----------
