@@ -62,6 +62,7 @@ Platforms
 Issues
 ------
 
+- 画像が裏表逆に表示される
 - 同一ページ内に複数のTheta Viewerコンテンツの表示ができない
 
 License
