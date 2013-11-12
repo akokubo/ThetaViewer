@@ -62,7 +62,7 @@ Platforms
 Problems
 --------
 
-- Firefoxの場合、スクロールによりウィンドウ内外にTheta Viewerコンテンツを移動するとハングする
+- OS X MaervericksでFirefox v.25の場合(他の環境では未確認)、スクロールによりウィンドウ内外にTheta Viewerコンテンツを移動するとハングする。three.jsのWebGLRendererを使用してアニメーションを実行しているためだと思われる。
 
 ChangeLogs
 ----------
