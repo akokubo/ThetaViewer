@@ -16,8 +16,8 @@ WebGLに対応していない場合は、[CSS Transforms Module Level 1](http://
 Setup
 -------------
 
-1. jQuery、Modernizr、Mega pixel image rendering library for iOS6 SafariをHTMLに先に読み込みます。以下の例では、これらをすべてjsフォルダに置いています。Modernizrは、production版でCSS 3D Transforms、Canvas、Touch Eventsのチェックのみを有効にして生成し、それをmodernizr-2.7.1-csstransforms3d-canvas-touch.jsという名前で保存したものを指定しています。
-2. 次にthree.jsのミニファイ版three.min.jsと、three.jsに付属のDetector.js、CSS3DRenderer.jsを読み込ませます。以下の例では、これらをすべてjsフォルダに置いています。three.jsは、ミニファイ版three.min.jsを指定しています。Detector.jsは、three.jsをダウンロードして展開してできるexamples/jsフォルダにあります。CSS3DRenderer.jsは、examples/js/renderersフォルダにあります。
+1. jQuery、Modernizr、Mega pixel image rendering library for iOS6 SafariをHTMLに先に読み込みます。以下の例では、これらをすべてjsフォルダに置いています。Modernizrは、production版でCSS 3D Transforms、Canvas、Touch Eventsのチェックのみを有効にして生成し、それをmodernizr-2.7.1-csstransforms3d-canvas-touch.jsという名前で保存したものを使用しています。
+2. 次にthree.jsと、three.jsに付属のDetector.js、CSS3DRenderer.jsを読み込ませます。以下の例では、これらをすべてjsフォルダに置いています。three.jsは、ミニファイ版three.min.jsを指定しています。ミニファイ版three.min.jsは、three.jsをダウンロードして展開してできるbuildフォルダにあります。Detector.jsは、examples/jsフォルダにあります。CSS3DRenderer.jsは、examples/js/renderersフォルダにあります。
 2. Theta ViewerをHTMLに読み込みます。以下の例は、配布しているファイルの中のbuildフォルダ中のtheta-viewer.min.jsをjsフォルダに置いた場合のものになっています。
 3. HTMLのbody要素の中にTheta Viewerでパノラマ画像を表示する要素(例では#theta-viewer)を用意します。
 4. パノラマ画像を表示するコードを記述します。具体的には「jQuery(パノラマ画像を表示したいセレクタ).createThetaViewer(画像ファイル);」で表示できます。以下の例では、#theta-viewerにimgフォルダの中のtheta.jpgを表示しています。
