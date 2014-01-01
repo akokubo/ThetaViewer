@@ -1,5 +1,5 @@
 /**
- * Theta Viewer v0.3.0
+ * Theta Viewer v0.3.1
  *
  * Copyright Atsushi Kokubo
  * Released under the MIT license.
@@ -663,7 +663,7 @@
     // レンダラーのモードを判別して設定
     function rendererModeSelector() {
         var mode;
-        if (Detector.webgl) {
+        if (Detector.webgl !== null) {
             // WebGLが使用可能
             mode = "WebGL";
         } else if (Modernizr.csstransforms3d === true && Modernizr.canvas === true) {
