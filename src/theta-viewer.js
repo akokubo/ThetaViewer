@@ -1,5 +1,5 @@
 /**
- * Theta Viewer v0.3.1
+ * Theta Viewer v0.3.2
  *
  * Copyright Atsushi Kokubo
  * Released under the MIT license.
@@ -20,6 +20,9 @@
                 that.renderer.setClearColor(0x000000, 1);
             } else if (mode === "CSS3D") {
                 that.renderer = new THREE.CSS3DRenderer();
+            } else if (mode === "Canvas") {
+                that.renderer = new THREE.CanvasRenderer();
+                that.renderer.setClearColor(0x000000, 1);
             }
 
             that.renderer.setSize(element.width(), element.height());
@@ -31,13 +34,6 @@
         // シーンの生成
         function buildScene(that) {
             that.scene = new THREE.Scene();
-        }
-
-        // 光源の生成とシーンへの追加
-        function createLight(that) {
-            // 環境光を作成
-            var ambient = new THREE.AmbientLight(0xFFFFFF);
-            that.scene.add(ambient);
         }
 
         // カメラの生成とシーンへの追加
@@ -105,10 +101,11 @@
 
 
         // 立方体のシーンへの追加
+        // http://threejs.org/examples/css3d_panorama.htmlなどを参照
         function createCube(that, texture) {
             var sides, R, dR, i, side, ele, object;
 
-            R = jQuery(texture[0]).get(0).width;
+            R = $(texture[0]).get(0).width;
             dR = (R - 2) / 2;
 
             sides = [
@@ -140,7 +137,7 @@
 
             for (i = 0; i < sides.length; i += 1) {
                 side = sides[i];
-                ele = jQuery(texture[i]).get(0);
+                ele = $(texture[i]).get(0);
                 object = new THREE.CSS3DObject(ele);
                 object.position.fromArray(side.position);
                 object.rotation.fromArray(side.rotation);
@@ -302,11 +299,8 @@
         // メイン・プログラム
         createRenderer(this, element, mode);
         buildScene(this);
-        if (mode === "WebGL") {
-            createLight(this);
-        }
         createCamera(this);
-        if (mode === "WebGL") {
+        if (mode === "WebGL" || mode === "Canvas") {
             buildSphere(this, texture);
             buildMaterial(this, texture);
             createMesh(this);
@@ -324,7 +318,8 @@
     };
 
     // キューブマップの生成
-    function createCubemapTexture(image_url, onload, onerror) {
+    // http://fmskatsuhiko.web.fc2.com/spherecube.htmlなどを参照
+    function createCubeMapTexture(image_url, onload, onerror) {
         var img, texture;
 
         // CubeMapの生成
@@ -335,24 +330,38 @@
                 u, v,
                 dloc, sloc,
                 sW, sH,
+                cW, cH, dy,
                 srcCanvas, srcContext,
                 dW, dH,
                 R, src, i,
                 megaPixImage;
 
-            sW = img.width / 2;
-            sH = img.height / 2;
+            // 元画像のサイズ
+            sW = img.width;
+            sH = img.height;
 
-            srcCanvas = jQuery('<canvas>').attr({'width': sW, 'height': sH});
+            // 画像をレンダリングするcanvasのサイズの計算
+            // iOSのMobile Safariでは2048x1024の限界がある場合がある
+            if (sW <= 2048) {
+                cW = sW;
+                cH = Math.floor(cW / 2);
+                dy = -Math.floor((cH - sH) / 2);
+            } else {
+                cW = 2048;
+                cH = 1024;
+                dy = -Math.floor((cH - (sH * 2048 / sW)) / 2);
+            }
+
+            srcCanvas = $('<canvas>').attr({'width': cW, 'height': cH});
             srcContext = srcCanvas.get(0).getContext('2d');
 
             megaPixImage = new MegaPixImage(img);
-            megaPixImage.render(srcCanvas.get(0), { maxWidth: sW, maxHeight: sH});
+            megaPixImage.render(srcCanvas.get(0), { maxWidth: cW, maxHeight: cH});
 
-            src = srcContext.getImageData(0, 0, sW, sH);
+            src = srcContext.getImageData(0, dy, cW, cH);
 
-            dW = sW;
-            dH = sH;
+            dW = cW;
+            dH = cH;
 
             R = Math.floor(dW / 8);
 
@@ -361,7 +370,7 @@
             context = [];
 
             for (i = 0; i < 6; i += 1) {
-                canvas[i] = jQuery('<canvas>').attr({'width': 2 * R, 'height': 2 * R});
+                canvas[i] = $('<canvas>').attr({'width': 2 * R, 'height': 2 * R});
                 context[i] = canvas[i].get(0).getContext('2d');
             }
 
@@ -624,12 +633,12 @@
             }
 
             texture = [
-                canvas[0],
-                canvas[2],
-                canvas[4],
-                canvas[5],
-                canvas[3],
-                canvas[1]
+                canvas[2], // posx
+                canvas[0], // negx
+                canvas[4], // posy
+                canvas[5], // negy
+                canvas[1], // posz
+                canvas[3]  // negz
             ];
             return texture;
         }
@@ -656,22 +665,23 @@
         alert('loading error: ' + image_url);
     }
 
-    function rendererNotAvailable() {
-        alert("Your browser is not available for WebGL or CSS 3D Transforms.");
-    }
-
     // レンダラーのモードを判別して設定
     function rendererModeSelector() {
         var mode;
+
         if (Detector.webgl !== null) {
             // WebGLが使用可能
             mode = "WebGL";
         } else if (Modernizr.csstransforms3d === true && Modernizr.canvas === true) {
             // CSS Transforms 3Dが使用可能
             mode = "CSS3D";
+        } else if (Modernizr.canvas === true) {
+            // Canvasが使用可能
+            mode = "Canvas";
         } else {
             // WebGLもCSS Transforms 3Dも使用不可
-            mode = undefined;
+            alert("WebGL, CSS3 and Canvas Renderer are not available!");
+            throw "rendererNotAvailable";
         }
         return mode;
     }
@@ -686,38 +696,48 @@
 
     // テクスチャーをこれからロードする場合
     $.fn.createThetaViewer = function (image_url) {
-        var texture,
-            that = this,
-            mode = rendererModeSelector(),
-            options = {};
+        var onload,
+            onerror,
+            loadTexture,
+            that,
+            mode;
 
-        options.onload = function (texture) {
+        // テクスチャーのロードが終了時の処理
+        onload = function (texture) {
             activateThetaViewer(that, texture, mode);
         };
 
-        options.onerror = function () {
+        // テクスチャーのロードが失敗時の処理
+        onerror = function () {
             imageLoadError(image_url);
         };
 
-        if (mode === "WebGL") {
-            options.mapping = undefined;
+        // テクスチャーのロードの処理
+        loadTexture = function (mode) {
+            var texture = null;
 
-            texture = THREE.ImageUtils.loadTexture(
-                image_url,
-                options.mapping,
-                options.onload,
-                options.onerror
-            );
-        } else if (mode === "CSS3D") {
-            texture = createCubemapTexture(
-                image_url,
-                options.onload,
-                options.onerror
-            );
+            if (mode === "WebGL" || mode === "Canvas") {
+                texture = THREE.ImageUtils.loadTexture(
+                    image_url,
+                    new THREE.UVMapping(),
+                    onload,
+                    onerror
+                );
+            } else if (mode === "CSS3D") {
+                // テクスチャーをロードしてキューブマップを生成
+                texture = createCubeMapTexture(
+                    image_url,
+                    onload,
+                    onerror
+                );
+            }
 
-        } else {
-            rendererNotAvailable();
-        }
+            return texture;
+        };
+
+        that = this;
+        mode = rendererModeSelector();
+        loadTexture(mode);
 
         return this;
     };

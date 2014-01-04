@@ -6,12 +6,14 @@ RICOH THETAのような正距円筒図法(Equirectangular Projection)のパノ�
 
 描画にはJavaScriptによる3Dライブラリ[three.js](http://threejs.org/)を使用しています。
 ブラウザが[WebGL](http://www.khronos.org/webgl/)に対応していれば、WebGLを用いて、球面にパノラマ画像をマッピングして表示します。
-WebGLに対応していない場合は、[CSS Transforms Module Level 1](http://www.w3.org/TR/css-transforms-1/)の3Dを用いて、キューブマップによる描画を試みます。
-どちらにも対応していない場合には、描画しません。
+WebGLに対応せず、[CSS Transforms Module Level 1](http://www.w3.org/TR/css-transforms-1/)の3DとCanvasに対応している場合には、キューブマップによる描画を試みます。
+WebGL、CSS Transforms Module Level 1の3Dに対応せず、Canvasに対応している場合には、Canvasによる描画を試みます。
+いずれにも対応していない場合には、描画しません。
 現時点では、パノラマ画像の正距円筒図法からキューブマップへの変換には、最近傍補間(Nearest Neighbor Interpolation)を用いていて、あまりきれいな変換にはなっていません。
+また、[Mega pixel image rendering library for iOS6 Safari](https://github.com/stomita/ios-imagefile-megapixel)を用いて、キューブマップへの変換時にテクスチャーの画像を最大2048x1024にダウンサンプリングします。
+これは、キューブマップの描画はiOSの場合を想定していて、iOSのMobile Safariではcanvasの描画の限界が2048x1024である場合があることによるものです。
 
 ブラウザのHTML5 canvas、CSS Transformsの3D、タッチ・イベントへの対応状況を調べるために[Modernizr](http://modernizr.com/)を使用しています。
-また、iOSのMobile SafariのHTML5 canvasの描画サイズの限界に対応するために[Mega pixel image rendering library for iOS6 Safari](https://github.com/stomita/ios-imagefile-megapixel)を使用しています。
 
 Setup
 -------------
@@ -79,8 +81,9 @@ Problems
 
 ChangeLogs
 ----------
+- v.0.3.2 2014/01/05 Canvasレンダラーへの対応とバグの修正
 - v.0.3.1 2014/01/01 WebGLが利用可能かどうかを判定する部分のバグを修正
-- v.0.3.0 2014/01/01 iOS、Androidに対応
+- v.0.3.0 2014/01/01 iOS、Androidに対応(CSS Transforms Module Level 1の3Dを使用)
 - v.0.2.0 2013/11/12 同一ページ内に複数のTheta Viewerコンテンツが存在できるように修正
 - v.0.1.2 2013/11/11 画像が裏表逆に表示されるのを修正
 - v.0.1.1 2013/11/10 マウス操作のバグを修正
