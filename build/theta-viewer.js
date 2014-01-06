@@ -21,7 +21,7 @@
             } else if (mode === "CSS3D") {
                 that.renderer = new THREE.CSS3DRenderer();
             } else if (mode === "Canvas") {
-                that.renderer = new THREE.CanvasRenderer();                
+                that.renderer = new THREE.CanvasRenderer();
                 that.renderer.setClearColor(0x000000, 1);
             }
 
@@ -683,7 +683,6 @@
             alert("WebGL, CSS3 and Canvas Renderer are not available!");
             throw "rendererNotAvailable";
         }
-        mode = "Canvas";
         return mode;
     }
 
