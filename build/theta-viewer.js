@@ -1,5 +1,5 @@
 /**
- * Theta Viewer v0.3.2
+ * Theta Viewer v0.3.3
  *
  * Copyright Atsushi Kokubo
  * Released under the MIT license.
@@ -119,11 +119,11 @@
                 },
                 {
                     position: [ 0,  dR, 0 ],
-                    rotation: [ Math.PI / 2, 0, Math.PI ]
+                    rotation: [ Math.PI / 2, 0, 0 ]
                 },
                 {
                     position: [ 0, -dR, 0 ],
-                    rotation: [ -Math.PI / 2, 0, Math.PI ]
+                    rotation: [ -Math.PI / 2, 0, 0 ]
                 },
                 {
                     position: [ 0, 0,  dR ],
@@ -227,8 +227,8 @@
                 event.preventDefault();
                 touch = event.touches[0];
 
-                lat += (touch.screenY - onTouchY) * 0.1;
-                lng -= (touch.screenX - onTouchX) * 0.1;
+                lat += (touch.screenY - onTouchY) * 0.2;
+                lng -= (touch.screenX - onTouchX) * 0.2;
 
                 onTouchX = touch.screenX;
                 onTouchY = touch.screenY;

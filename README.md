@@ -81,6 +81,7 @@ Problems
 
 ChangeLogs
 ----------
+- v.0.3.3 2014/01/07 CSS Transforms Module Level 1使用時の表示のバグの修正
 - v.0.3.2 2014/01/05 Canvasレンダラーへの対応とバグの修正
 - v.0.3.1 2014/01/01 WebGLが利用可能かどうかを判定する部分のバグを修正
 - v.0.3.0 2014/01/01 iOS、Androidに対応(CSS Transforms Module Level 1の3Dを使用)
