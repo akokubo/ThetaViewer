@@ -53,8 +53,8 @@ Setup
 </html>
 ```
 
-Manipulation
-------------
+Manipulations
+-------------
 
 - マウス/タッチのドラッグで注視点を移動
 - マウスのホイールでズームイン/ズームアウト
@@ -81,6 +81,7 @@ Problems
 
 ChangeLogs
 ----------
+
 - v.0.3.3 2014/01/07 CSS Transforms Module Level 1使用時の表示のバグの修正
 - v.0.3.2 2014/01/05 Canvasレンダラーへの対応とバグの修正
 - v.0.3.1 2014/01/01 WebGLが利用可能かどうかを判定する部分のバグを修正
@@ -90,6 +91,10 @@ ChangeLogs
 - v.0.1.1 2013/11/10 マウス操作のバグを修正
 - v.0.1 2013/11/08 リリース
 
+Articles
+--------
+
+- [小久保温、「全周パノラマ画像WebGL/CSS 3D Transformsビューアーの開発」、平成25年度第4回芸術科学会東北支部研究会 研究会論文25-04-09、2014年3月29日、日本大学工学部](http://akokubo.github.io/ThetaViewer/pdf/as-tohoku-25-04-09-resume.pdf)
 
 License
 -------
