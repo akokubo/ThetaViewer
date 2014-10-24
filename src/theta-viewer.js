@@ -669,7 +669,7 @@
     function rendererModeSelector() {
         var mode;
 
-        if (Detector.webgl !== null) {
+        if (Detector.webgl !== false) {
             // WebGLが使用可能
             mode = "WebGL";
         } else if (Modernizr.csstransforms3d === true && Modernizr.canvas === true) {
